@@ -1,0 +1,69 @@
+{
+    "version": 4,
+    "configurePresets": [
+        {
+            "name": "windows-rez-env-vfx2023",
+            "hidden": true,
+            "environment": {
+                "DEPS_ROOT"                     : "${sourceParentDir}/installs",
+                "BUILD_DIR"                     : "${sourceParentDir}/build",
+                "Boost_ROOT"                    : "$env{REZ_BOOST_ROOT}",
+                "Libuuid_ROOT"                  : "$env{REZ_LIBUUID_ROOT}",
+                "CppUnit_ROOT"                  : "$env{REZ_CPPUNIT_ROOT}",
+                "ISPC"                          : "$env{REZ_ISPC_ROOT}/bin/ispc",
+                "JsonCpp_ROOT"                  : "$env{REZ_JSONCPP_ROOT}",
+                "Libcurl_ROOT"                  : "$env{REZ_LIBCURL_ROOT}",
+                "Log4cplus_ROOT"                : "$env{REZ_LOG4CPLUS_ROOT}",
+                "LUA_DIR"                       : "$env{REZ_LUA_ROOT}",
+                "OpenSubDiv_ROOT"               : "$env{REZ_OPENSUBDIV_ROOT}",
+                "OpenVDB_ROOT"                  : "$env{REZ_OPENVDB_ROOT}",
+                "OPTIX_ROOT"                    : "$env{OPTIX_ROOT_DIR}",
+                "PXR_USD_LOCATION"              : "$env{REZ_OPENUSD_ROOT}",
+                "PXR_INCLUDE_DIRS"              : "$env{REZ_OPENUSD_ROOT}/include",
+                "Random123_ROOT"                : "$env{REZ_RANDOM123_ROOT}",
+                "ZLIB_ROOT"                     : "$env{REZ_ZLIB_ROOT}",
+                "Embree_ROOT"                   : "$env{REZ_EMBREE_ROOT}",
+                "LIBMICROHTTPD_ROOT"            : "$env{REZ_MICROHTTPD_ROOT}",
+                "OPENSSL_ROOT_DIR"              : "$env{REZ_PYTHON_ROOT}",
+                "JPEG_ROOT"                     : "$env{REZ_LIBJPEGTURBO_ROOT}",
+                "QT_ROOT"                       : "$env{REZ_QT_ROOT}",
+                "Python_ROOT_DIR"               : "$env{REZ_PYTHON_ROOT}",
+                "Python3_ROOT_DIR"              : "$env{REZ_PYTHON_ROOT}",
+                "TBB_ROOT"                      : "$env{REZ_TBB_ROOT}",
+                "OpenImageDenoise_DIR"          : "$env{REZ_OIDN_ROOT}",
+                "Freetype_ROOT"                 : "$env{REZ_FREETYPE_ROOT}"
+            },
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "$env{DEPS_ROOT}",
+                "Python_EXECUTABLE": "python",
+                "Python3_EXECUTABLE": "python",
+                "BOOST_PYTHON_COMPONENT_NAME": "python310",
+                "ABI_VERSION": "0",
+                "Python_FIND_STRATEGY": "LOCATION",
+                "Python3_FIND_STRATEGY": "LOCATION",
+                "Python_MINOR_VERSION": "10",
+                "Python3_MINOR_VERSION": "10"
+            }
+        },
+        {
+            "name": "windows-rez-release-vfx2023",
+            "displayName": "Windows Rez Release",
+            "inherits": "windows-rez-env-vfx2023",
+            "binaryDir": "$env{BUILD_DIR}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/../installs/openmoonray"
+            },
+            "generator": "Visual Studio 17"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "windows-rez-release-vfx2023",
+            "displayName": "Windows Rez Release VFX 2023",
+            "configurePreset": "windows-rez-release-vfx2023",
+            "configuration": "Release",
+            "targets": ["install"]
+        }
+    ]
+}
