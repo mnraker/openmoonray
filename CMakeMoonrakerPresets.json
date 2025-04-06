@@ -2,8 +2,11 @@
     "version": 4,
     "configurePresets": [
         {
-            "name": "windows-rez-env-vfx2023",
+            "name": "rez-env-vfx2023",
             "hidden": true,
+            "warnings" : {
+                "dev" : false
+            },
             "environment": {
                 "DEPS_ROOT"                     : "${sourceParentDir}/installs",
                 "BUILD_DIR"                     : "${sourceParentDir}/build",
@@ -22,7 +25,7 @@
                 "PXR_INCLUDE_DIRS"              : "$env{REZ_OPENUSD_ROOT}/include",
                 "Random123_ROOT"                : "$env{REZ_RANDOM123_ROOT}",
                 "ZLIB_ROOT"                     : "$env{REZ_ZLIB_ROOT}",
-                "Embree_ROOT"                   : "$env{REZ_EMBREE_ROOT}",
+                "Embree_DIR"                    : "$env{REZ_EMBREE_ROOT}/lib/cmake/embree-4.3.3",
                 "LIBMICROHTTPD_ROOT"            : "$env{REZ_MICROHTTPD_ROOT}",
                 "OPENSSL_ROOT_DIR"              : "$env{REZ_PYTHON_ROOT}",
                 "JPEG_ROOT"                     : "$env{REZ_LIBJPEGTURBO_ROOT}",
@@ -30,8 +33,12 @@
                 "Python_ROOT_DIR"               : "$env{REZ_PYTHON_ROOT}",
                 "Python3_ROOT_DIR"              : "$env{REZ_PYTHON_ROOT}",
                 "TBB_ROOT"                      : "$env{REZ_TBB_ROOT}",
-                "OpenImageDenoise_DIR"          : "$env{REZ_OIDN_ROOT}",
-                "Freetype_ROOT"                 : "$env{REZ_FREETYPE_ROOT}"
+                "OpenImageDenoise_DIR"          : "$env{REZ_OIDN_ROOT}/lib/cmake/OpenImageDenoise-2.3.3",
+                "Freetype_ROOT"                 : "$env{REZ_FREETYPE_ROOT}",
+                "OpenEXR_DIR"                   : "$env{REZ_OPENEXR_ROOT}/lib/cmake/OpenEXR",
+                "Imath_DIR"                     : "$env{REZ_IMATH_ROOT}/lib/cmake/Imath",
+                "MaterialX_DIR"                 : "$env{REZ_MATERIALX_ROOT}/lib/cmake/MaterialX",
+                "OpenColorIO_DIR"               : "$env{REZ_OPENCOLORIO_ROOT}/lib/cmake/OpenColorIO"
             },
             "cacheVariables": {
                 "CMAKE_PREFIX_PATH": "$env{DEPS_ROOT}",
@@ -48,13 +55,24 @@
         {
             "name": "windows-rez-release-vfx2023",
             "displayName": "Windows Rez Release",
-            "inherits": "windows-rez-env-vfx2023",
+            "inherits": "rez-env-vfx2023",
             "binaryDir": "$env{BUILD_DIR}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/../installs/openmoonray"
             },
             "generator": "Visual Studio 17"
+        },
+        {
+            "name": "linux-rez-release-vfx2023",
+            "displayName": "Linux Rez Release",
+            "inherits": "rez-env-vfx2023",
+            "binaryDir": "$env{BUILD_DIR}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/../installs/openmoonray"
+            },
+            "generator": "Unix Makefiles"
         }
     ],
     "buildPresets": [
@@ -62,6 +80,13 @@
             "name": "windows-rez-release-vfx2023",
             "displayName": "Windows Rez Release VFX 2023",
             "configurePreset": "windows-rez-release-vfx2023",
+            "configuration": "Release",
+            "targets": ["install"]
+        },
+        {
+            "name": "linux-rez-release-vfx2023",
+            "displayName": "Linux Rez Release VFX 2023",
+            "configurePreset": "linux-rez-release-vfx2023",
             "configuration": "Release",
             "targets": ["install"]
         }
