@@ -25,7 +25,7 @@
                 "PXR_INCLUDE_DIRS"              : "$env{REZ_OPENUSD_ROOT}/include",
                 "Random123_ROOT"                : "$env{REZ_RANDOM123_ROOT}",
                 "ZLIB_ROOT"                     : "$env{REZ_ZLIB_ROOT}",
-                "Embree_DIR"                    : "$env{REZ_EMBREE_ROOT}/lib/cmake/embree-4.3.3",
+                "Embree_DIR"                    : "$env{REZ_EMBREE_ROOT}/lib/cmake/embree-$env{REZ_EMBREE_VERSION}",
                 "LIBMICROHTTPD_ROOT"            : "$env{REZ_MICROHTTPD_ROOT}",
                 "OPENSSL_ROOT_DIR"              : "$env{REZ_PYTHON_ROOT}",
                 "JPEG_ROOT"                     : "$env{REZ_LIBJPEGTURBO_ROOT}",
@@ -33,7 +33,7 @@
                 "Python_ROOT_DIR"               : "$env{REZ_PYTHON_ROOT}",
                 "Python3_ROOT_DIR"              : "$env{REZ_PYTHON_ROOT}",
                 "TBB_ROOT"                      : "$env{REZ_TBB_ROOT}",
-                "OpenImageDenoise_DIR"          : "$env{REZ_OIDN_ROOT}/lib/cmake/OpenImageDenoise-2.3.3",
+                "OpenImageDenoise_DIR"          : "$env{REZ_OIDN_ROOT}/lib/cmake/OpenImageDenoise-$env{REZ_OIDN_VERSION}",
                 "Freetype_ROOT"                 : "$env{REZ_FREETYPE_ROOT}",
                 "OpenEXR_DIR"                   : "$env{REZ_OPENEXR_ROOT}/lib/cmake/OpenEXR",
                 "Imath_DIR"                     : "$env{REZ_IMATH_ROOT}/lib/cmake/Imath",
@@ -59,7 +59,7 @@
             "binaryDir": "$env{BUILD_DIR}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/../installs/openmoonray"
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/openmoonray"
             },
             "generator": "Visual Studio 17"
         },
@@ -70,7 +70,8 @@
             "binaryDir": "$env{BUILD_DIR}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/../installs/openmoonray"
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/openmoonray",
+                "CMAKE_INSTALL_LIBDIR": "lib"
             },
             "generator": "Unix Makefiles"
         }
