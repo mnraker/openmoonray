@@ -2,7 +2,7 @@
     "version": 4,
     "configurePresets": [
         {
-            "name": "rez-env-vfx2023",
+            "name": "rez-env",
             "hidden": true,
             "warnings" : {
                 "dev" : false
@@ -27,7 +27,6 @@
                 "ZLIB_ROOT"                     : "$env{REZ_ZLIB_ROOT}",
                 "Embree_DIR"                    : "$env{REZ_EMBREE_ROOT}/lib/cmake/embree-$env{REZ_EMBREE_VERSION}",
                 "LIBMICROHTTPD_ROOT"            : "$env{REZ_MICROHTTPD_ROOT}",
-                "OPENSSL_ROOT_DIR"              : "$env{REZ_PYTHON_ROOT}",
                 "JPEG_ROOT"                     : "$env{REZ_LIBJPEGTURBO_ROOT}",
                 "QT_ROOT"                       : "$env{REZ_QT_ROOT}",
                 "Python_ROOT_DIR"               : "$env{REZ_PYTHON_ROOT}",
@@ -44,51 +43,113 @@
                 "CMAKE_PREFIX_PATH": "$env{DEPS_ROOT}",
                 "Python_EXECUTABLE": "python",
                 "Python3_EXECUTABLE": "python",
-                "BOOST_PYTHON_COMPONENT_NAME": "python310",
                 "ABI_VERSION": "0",
                 "Python_FIND_STRATEGY": "LOCATION",
                 "Python3_FIND_STRATEGY": "LOCATION",
-                "Python_MINOR_VERSION": "10",
-                "Python3_MINOR_VERSION": "10"
+                "BOOST_PYTHON_COMPONENT_NAME": "python$env{REZ_PYTHON_MAJOR_VERSION}$env{REZ_PYTHON_MINOR_VERSION}",
+                "Python_MAJOR_VERSION": "$env{REZ_PYTHON_MAJOR_VERSION}",
+                "Python3_MAJOR_VERSION": "$env{REZ_PYTHON_MAJOR_VERSION}",
+                "Python_MINOR_VERSION": "$env{REZ_PYTHON_MINOR_VERSION}",
+                "Python3_MINOR_VERSION": "$env{REZ_PYTHON_MINOR_VERSION}"
             }
         },
         {
-            "name": "windows-rez-release-vfx2023",
-            "displayName": "Windows Rez Release",
-            "inherits": "rez-env-vfx2023",
+            "name": "linux-rez",
+            "hidden": true,
+            "inherits": "rez-env",
+            "cacheVariables": {
+                "CMAKE_INSTALL_LIBDIR": "lib",
+                "OPENSSL_INCLUDE_DIR": "/usr/include/openssl3",
+                "OPENSSL_CRYPTO_LIBRARY": "/usr/lib64/libcrypto.so.3",
+                "OPENSSL_SSL_LIBRARY": "/usr/lib64/libssl.so.3"
+            }
+        },
+        {
+            "name": "windows-rez",
+            "hidden": true,
+            "inherits": "rez-env",
             "binaryDir": "$env{BUILD_DIR}",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/openmoonray"
+                "OPENSSL_ROOT_DIR": "$env{REZ_PYTHON_ROOT}"
             },
             "generator": "Visual Studio 17"
         },
         {
-            "name": "linux-rez-release-vfx2023",
+            "name": "linux-rez-release",
             "displayName": "Linux Rez Release",
-            "inherits": "rez-env-vfx2023",
-            "binaryDir": "$env{BUILD_DIR}",
+            "inherits": "linux-rez",
+            "binaryDir": "$env{BUILD_DIR}/release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/openmoonray",
-                "CMAKE_INSTALL_LIBDIR": "lib"
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release/openmoonray",
+                "MOONRAY_USE_OPTIX": "NO"
             },
             "generator": "Unix Makefiles"
+        },
+        {
+            "name": "linux-rez-debug",
+            "displayName": "Linux Rez Debug",
+            "inherits": "linux-rez",
+            "binaryDir": "$env{BUILD_DIR}/debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/debug/openmoonray",
+                "MOONRAY_USE_OPTIX": "NO"
+            },
+            "generator": "Unix Makefiles"
+        },
+        {
+            "name": "windows-rez-release",
+            "displayName": "Windows Rez Release",
+            "inherits": "windows-rez",
+            "binaryDir": "$env{BUILD_DIR}/release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release/openmoonray",
+                "MOONRAY_USE_OPTIX": "NO"
+            },
+            "generator": "Visual Studio 17"
+        },
+        {
+            "name": "windows-rez-debug",
+            "displayName": "Windows Rez Debug",
+            "inherits": "windows-rez",
+            "binaryDir": "$env{BUILD_DIR}/debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/debug/openmoonray",
+                "MOONRAY_USE_OPTIX": "NO"
+            },
+            "generator": "Visual Studio 17"
         }
     ],
     "buildPresets": [
         {
-            "name": "windows-rez-release-vfx2023",
-            "displayName": "Windows Rez Release VFX 2023",
-            "configurePreset": "windows-rez-release-vfx2023",
+            "name": "linux-rez-release",
+            "displayName": "Linux Rez Release",
+            "configurePreset": "linux-rez-release",
             "configuration": "Release",
             "targets": ["install"]
         },
         {
-            "name": "linux-rez-release-vfx2023",
-            "displayName": "Linux Rez Release VFX 2023",
-            "configurePreset": "linux-rez-release-vfx2023",
+            "name": "linux-rez-debug",
+            "displayName": "Linux Rez debug",
+            "configurePreset": "linux-rez-debug",
+            "configuration": "Debug",
+            "targets": ["install"]
+        },
+        {
+            "name": "windows-rez-release",
+            "displayName": "Windows Rez Release",
+            "configurePreset": "windows-rez-release",
             "configuration": "Release",
+            "targets": ["install"]
+        },
+        {
+            "name": "windows-rez-debug",
+            "displayName": "Windows Rez Debug",
+            "configurePreset": "windows-rez-debug",
+            "configuration": "Debug",
             "targets": ["install"]
         }
     ]
