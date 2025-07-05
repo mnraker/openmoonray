@@ -41,8 +41,8 @@
             },
             "cacheVariables": {
                 "CMAKE_PREFIX_PATH": "$env{DEPS_ROOT}",
-                "Python_EXECUTABLE": "python",
-                "Python3_EXECUTABLE": "python",
+                "Python_EXECUTABLE": "$env{REZ_PYTHON_ROOT}/bin/python",
+                "Python3_EXECUTABLE": "$env{REZ_PYTHON_ROOT}/bin/python",
                 "ABI_VERSION": "0",
                 "Python_FIND_STRATEGY": "LOCATION",
                 "Python3_FIND_STRATEGY": "LOCATION",
@@ -108,7 +108,7 @@
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release/openmoonray",
                 "MOONRAY_USE_OPTIX": "NO"
             },
-            "generator": "Visual Studio 17"
+            "generator": "Visual Studio 17 2022"
         },
         {
             "name": "windows-rez-debug",
@@ -120,7 +120,7 @@
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/debug/openmoonray",
                 "MOONRAY_USE_OPTIX": "NO"
             },
-            "generator": "Visual Studio 17"
+            "generator": "Visual Studio 17 2022"
         }
     ],
     "buildPresets": [
