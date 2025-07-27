@@ -70,7 +70,8 @@
             "inherits": "rez-env",
             "binaryDir": "$env{BUILD_DIR}",
             "cacheVariables": {
-                "OPENSSL_ROOT_DIR": "$env{REZ_PYTHON_ROOT}"
+                "OPENSSL_ROOT_DIR": "$env{REZ_PYTHON_ROOT}",
+                "GLEW_ROOT": "$env{REZ_GLEW_ROOT}"
             },
             "generator": "Visual Studio 17"
         },
