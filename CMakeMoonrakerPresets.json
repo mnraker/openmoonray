@@ -88,6 +88,18 @@
             "generator": "Unix Makefiles"
         },
         {
+            "name": "linux-rez-relwithdebinfo",
+            "displayName": "Linux Rez RelWithDebInfo",
+            "inherits": "linux-rez",
+            "binaryDir": "$env{BUILD_DIR}/relwithdebinfo",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/relwithdebinfo/openmoonray",
+                "MOONRAY_USE_OPTIX": "NO"
+            },
+            "generator": "Unix Makefiles"
+        },
+        {
             "name": "linux-rez-debug",
             "displayName": "Linux Rez Debug",
             "inherits": "linux-rez",
@@ -107,6 +119,18 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release/openmoonray",
+                "MOONRAY_USE_OPTIX": "NO"
+            },
+            "generator": "Visual Studio 17 2022"
+        },
+        {
+            "name": "windows-rez-relwithdebinfo",
+            "displayName": "Windows Rez RelWithDebInfo",
+            "inherits": "windows-rez",
+            "binaryDir": "$env{BUILD_DIR}/relwithdebinfo",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/relwithdebinfo/openmoonray",
                 "MOONRAY_USE_OPTIX": "NO"
             },
             "generator": "Visual Studio 17 2022"
