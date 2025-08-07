@@ -71,7 +71,8 @@
             "binaryDir": "$env{BUILD_DIR}",
             "cacheVariables": {
                 "OPENSSL_ROOT_DIR": "$env{REZ_PYTHON_ROOT}",
-                "GLEW_ROOT": "$env{REZ_GLEW_ROOT}"
+                "GLEW_ROOT": "$env{REZ_GLEW_ROOT}",
+                "CMAKE_SYSTEM_VERSION": "$env{REZ_WINSDK_VERSION}"
             },
             "generator": "Visual Studio 17"
         },
@@ -79,7 +80,7 @@
             "name": "linux-rez-release",
             "displayName": "Linux Rez Release",
             "inherits": "linux-rez",
-            "binaryDir": "$env{BUILD_DIR}/release",
+            "binaryDir": "$env{BUILD_DIR}/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release/openmoonray",
@@ -91,7 +92,7 @@
             "name": "linux-rez-relwithdebinfo",
             "displayName": "Linux Rez RelWithDebInfo",
             "inherits": "linux-rez",
-            "binaryDir": "$env{BUILD_DIR}/relwithdebinfo",
+            "binaryDir": "$env{BUILD_DIR}/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/relwithdebinfo",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "RelWithDebInfo",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/relwithdebinfo/openmoonray",
@@ -103,7 +104,7 @@
             "name": "linux-rez-debug",
             "displayName": "Linux Rez Debug",
             "inherits": "linux-rez",
-            "binaryDir": "$env{BUILD_DIR}/debug",
+            "binaryDir": "$env{BUILD_DIR}/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/debug/openmoonray",
@@ -115,7 +116,7 @@
             "name": "windows-rez-release",
             "displayName": "Windows Rez Release",
             "inherits": "windows-rez",
-            "binaryDir": "$env{BUILD_DIR}/release",
+            "binaryDir": "$env{BUILD_DIR}/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/release/openmoonray",
@@ -127,7 +128,7 @@
             "name": "windows-rez-relwithdebinfo",
             "displayName": "Windows Rez RelWithDebInfo",
             "inherits": "windows-rez",
-            "binaryDir": "$env{BUILD_DIR}/relwithdebinfo",
+            "binaryDir": "$env{BUILD_DIR}/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/relwithdebinfo",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "RelWithDebInfo",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/relwithdebinfo/openmoonray",
@@ -139,7 +140,7 @@
             "name": "windows-rez-debug",
             "displayName": "Windows Rez Debug",
             "inherits": "windows-rez",
-            "binaryDir": "$env{BUILD_DIR}/debug",
+            "binaryDir": "$env{BUILD_DIR}/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/installs/vfx$env{REZ_VFXPLATFORM_MAJOR_VERSION}/debug/openmoonray",
