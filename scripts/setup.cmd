@@ -5,7 +5,11 @@ rem SPDX-License-Identifier: Apache-2.0
 
 rem setup environment variables to use release
 
-set omr_root=%CD%\%1
+set cwd=%CD%
+cd %~dp0%..
+set omr_root=%CD%
+cd %cwd%
+set cwd=
 
 rem Walk up to find the top-level install dir where the dependencies are installed
 rem set install_root=%omr_root%
@@ -20,7 +24,7 @@ rem NB required for Arras to function (it needs to find execComp)
 set PATH=%omr_root%\bin;%PATH%
 
 rem need python modules for the USD interface and for the RATS tests
-rem set PYTHONPATH=%install_root%\lib\python;%PYTHONPATH%
+set PYTHONPATH=%omr_root%\python\lib\python3.10;%PYTHONPATH%
 
 
 rem tell moonray where to find dsos
