@@ -1,0 +1,19 @@
+{
+  "name": "openmoonray",
+  "version-string": "0.1",
+  "dependencies": [
+    "tbb",
+    "openvdb",
+    { "name": "log4cplus", "features": ["unicode"] },
+    "jsoncpp",
+    { "name": "lua", "features": ["tools"] },
+    "openimageio",
+    "curl",
+    "opencolorio",
+    "opensubdiv",
+    "cppunit",
+    "embree",
+    "random123",
+    "openimagedenoise"
+  ]
+}
