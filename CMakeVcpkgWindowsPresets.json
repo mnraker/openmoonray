@@ -28,7 +28,33 @@
     {
       "name": "windows-vcpkg-local-release",
       "displayName": "Windows vcpkg (local) Ninja Release",
-      "inherits": "win-vcpkg-env"
+      "inherits": "win-vcpkg-env",
+      "cacheVariables": {
+        "BUILD_QT_APPS": "ON",
+
+        "OMR_BUILD_HYDRA": "ON",
+        "OMR_BUILD_DENOISE": "ON",
+        "OMR_BUILD_MOONRAY_ARRAS": "OFF",
+        "OMR_BUILD_DCC_PLUGINS": "OFF",
+        "OMR_BUILD_MOONSHINE_USD": "ON",
+        "OMR_BUILD_TOOLS": "ON",
+        "OMR_BUILD_DWA_EXT": "ON"
+      }
+    },
+
+    {
+      "name": "windows-vcpkg-local-minimal-release",
+      "displayName": "Windows vcpkg (local) Ninja Release (minimal)",
+      "inherits": "win-vcpkg-env",
+      "cacheVariables": {
+        "OMR_BUILD_HYDRA": "OFF",
+        "OMR_BUILD_DENOISE": "OFF",
+        "OMR_BUILD_MOONRAY_ARRAS": "OFF",
+        "OMR_BUILD_DCC_PLUGINS": "OFF",
+        "OMR_BUILD_MOONSHINE_USD": "OFF",
+        "OMR_BUILD_TOOLS": "OFF",
+        "OMR_BUILD_DWA_EXT": "OFF"
+      }
     },
 
     {
@@ -37,6 +63,35 @@
       "inherits": "win-vcpkg-env",
       "environment": {
         "VCPKG_BINARY_SOURCES": "clear;nuget,<MOONRAKER_NUGET_FEED>,readwrite"
+      },
+      "cacheVariables": {
+        "BUILD_QT_APPS": "ON",
+
+        "OMR_BUILD_HYDRA": "ON",
+        "OMR_BUILD_DENOISE": "ON",
+        "OMR_BUILD_MOONRAY_ARRAS": "OFF",
+        "OMR_BUILD_DCC_PLUGINS": "OFF",
+        "OMR_BUILD_MOONSHINE_USD": "ON",
+        "OMR_BUILD_TOOLS": "ON",
+        "OMR_BUILD_DWA_EXT": "ON"
+      }
+    },
+
+    {
+      "name": "windows-vcpkg-moonraker-minimal-release",
+      "displayName": "Windows vcpkg (Moonraker) Ninja Release (minimal)",
+      "inherits": "win-vcpkg-env",
+      "environment": {
+        "VCPKG_BINARY_SOURCES": "clear;nuget,<MOONRAKER_NUGET_FEED>,readwrite"
+      },
+      "cacheVariables": {
+        "OMR_BUILD_HYDRA": "OFF",
+        "OMR_BUILD_DENOISE": "OFF",
+        "OMR_BUILD_MOONRAY_ARRAS": "OFF",
+        "OMR_BUILD_DCC_PLUGINS": "OFF",
+        "OMR_BUILD_MOONSHINE_USD": "OFF",
+        "OMR_BUILD_TOOLS": "OFF",
+        "OMR_BUILD_DWA_EXT": "OFF"
       }
     }
   ],
@@ -48,8 +103,18 @@
       "targets": ["install"]
     },
     {
+      "name": "windows-vcpkg-local-minimal-release",
+      "configurePreset": "windows-vcpkg-local-minimal-release",
+      "targets": ["install"]
+    },
+    {
       "name": "windows-vcpkg-moonraker-release",
       "configurePreset": "windows-vcpkg-moonraker-release",
+      "targets": ["install"]
+    },
+    {
+      "name": "windows-vcpkg-moonraker-minimal-release",
+      "configurePreset": "windows-vcpkg-moonraker-minimal-release",
       "targets": ["install"]
     }
   ]
