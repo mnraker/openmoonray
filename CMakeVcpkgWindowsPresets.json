@@ -1,0 +1,56 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "win-vcpkg-env",
+      "hidden": true,
+      "warnings": { "dev": false },
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/_build/${presetName}",
+      "environment": {
+        "VCPKG_ROOT": "$env{VCPKG_ROOT}",
+        "VCPKG_FEATURE_FLAGS": "manifests,versions,binarycaching"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/_install/${presetName}",
+
+        "BUILD_QT_APPS": "OFF",
+        "MOONRAY_USE_CUDA": "OFF",
+        "MOONRAY_USE_OPTIX": "OFF",
+
+        "ABI_VERSION": "0"
+      }
+    },
+
+    {
+      "name": "windows-vcpkg-local-release",
+      "displayName": "Windows vcpkg (local) Ninja Release",
+      "inherits": "win-vcpkg-env"
+    },
+
+    {
+      "name": "windows-vcpkg-moonraker-release",
+      "displayName": "Windows vcpkg (Moonraker) Ninja Release",
+      "inherits": "win-vcpkg-env",
+      "environment": {
+        "VCPKG_BINARY_SOURCES": "clear;nuget,<MOONRAKER_NUGET_FEED>,readwrite"
+      }
+    }
+  ],
+
+  "buildPresets": [
+    {
+      "name": "windows-vcpkg-local-release",
+      "configurePreset": "windows-vcpkg-local-release",
+      "targets": ["install"]
+    },
+    {
+      "name": "windows-vcpkg-moonraker-release",
+      "configurePreset": "windows-vcpkg-moonraker-release",
+      "targets": ["install"]
+    }
+  ]
+}
