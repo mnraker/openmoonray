@@ -43,6 +43,16 @@
     },
 
     {
+      "name": "windows-vcpkg-local-debug",
+      "displayName": "Windows vcpkg (local) Ninja Debug",
+      "inherits": "windows-vcpkg-local-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/_install/windows-vcpkg-local-debug"
+      }
+    },
+
+    {
       "name": "windows-vcpkg-local-minimal-release",
       "displayName": "Windows vcpkg (local) Ninja Release (minimal)",
       "inherits": "win-vcpkg-env",
@@ -54,6 +64,16 @@
         "OMR_BUILD_MOONSHINE_USD": "OFF",
         "OMR_BUILD_TOOLS": "OFF",
         "OMR_BUILD_DWA_EXT": "OFF"
+      }
+    },
+
+    {
+      "name": "windows-vcpkg-local-minimal-debug",
+      "displayName": "Windows vcpkg (local) Ninja Debug (minimal)",
+      "inherits": "windows-vcpkg-local-minimal-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/_install/windows-vcpkg-local-minimal-debug"
       }
     },
 
@@ -78,6 +98,16 @@
     },
 
     {
+      "name": "windows-vcpkg-moonraker-debug",
+      "displayName": "Windows vcpkg (Moonraker) Ninja Debug",
+      "inherits": "windows-vcpkg-moonraker-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/_install/windows-vcpkg-moonraker-debug"
+      }
+    },
+
+    {
       "name": "windows-vcpkg-moonraker-minimal-release",
       "displayName": "Windows vcpkg (Moonraker) Ninja Release (minimal)",
       "inherits": "win-vcpkg-env",
@@ -93,29 +123,60 @@
         "OMR_BUILD_TOOLS": "OFF",
         "OMR_BUILD_DWA_EXT": "OFF"
       }
+    },
+
+    {
+      "name": "windows-vcpkg-moonraker-minimal-debug",
+      "displayName": "Windows vcpkg (Moonraker) Ninja Debug (minimal)",
+      "inherits": "windows-vcpkg-moonraker-minimal-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/_install/windows-vcpkg-moonraker-minimal-debug"
+      }
     }
   ],
 
   "buildPresets": [
-    {
-      "name": "windows-vcpkg-local-release",
-      "configurePreset": "windows-vcpkg-local-release",
-      "targets": ["install"]
+    { 
+      "name": "windows-vcpkg-local-release", 
+      "configurePreset": "windows-vcpkg-local-release", 
+      "targets": ["install"] 
     },
-    {
-      "name": "windows-vcpkg-local-minimal-release",
-      "configurePreset": "windows-vcpkg-local-minimal-release",
-      "targets": ["install"]
+    { 
+      "name": "windows-vcpkg-local-debug", 
+      "configurePreset": "windows-vcpkg-local-debug", 
+      "targets": ["install"] 
     },
-    {
-      "name": "windows-vcpkg-moonraker-release",
-      "configurePreset": "windows-vcpkg-moonraker-release",
-      "targets": ["install"]
+    { 
+      "name": "windows-vcpkg-local-minimal-release", 
+      "configurePreset": "windows-vcpkg-local-minimal-release", 
+      "targets": ["install"] 
     },
-    {
-      "name": "windows-vcpkg-moonraker-minimal-release",
-      "configurePreset": "windows-vcpkg-moonraker-minimal-release",
-      "targets": ["install"]
+    { 
+      "name": "windows-vcpkg-local-minimal-debug", 
+      "configurePreset": "windows-vcpkg-local-minimal-debug", 
+      "targets": ["install"] 
+    },
+
+    { 
+      "name": "windows-vcpkg-moonraker-release", 
+      "configurePreset": "windows-vcpkg-moonraker-release", 
+      "targets": ["install"] 
+    },
+    { 
+      "name": "windows-vcpkg-moonraker-debug", 
+      "configurePreset": "windows-vcpkg-moonraker-debug", 
+      "targets": ["install"] 
+    },
+    { 
+      "name": "windows-vcpkg-moonraker-minimal-release", 
+      "configurePreset": "windows-vcpkg-moonraker-minimal-release", 
+      "targets": ["install"] 
+    },
+    { 
+      "name": "windows-vcpkg-moonraker-minimal-debug", 
+      "configurePreset": "windows-vcpkg-moonraker-minimal-debug", 
+      "targets": ["install"] 
     }
   ]
 }
